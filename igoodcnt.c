@@ -28,7 +28,7 @@ void* thread();
 int main(int argc, char * argv[]) {
 	// declare variables
 	pthread_t tid1, tid2;
-	sem_init(&mutex, 0, 1); // initialize the semaphor
+	sem_init(&mutex, 0, 1); // initialize the semaphore
 	char *ptr1; // to check that arg is just a number
 
 	// check that proper #of arguments were inputted
@@ -82,7 +82,7 @@ int main(int argc, char * argv[]) {
 	}
 // End of code section
 
-	sem_destroy(&mutex); // destroy the semaphor
+	sem_destroy(&mutex); // destroy the semaphore
 	pthread_exit(NULL);
 	return 0;
 } // end main
