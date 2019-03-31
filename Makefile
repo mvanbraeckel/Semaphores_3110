@@ -24,7 +24,7 @@ git: clean Makefile *.c *.txt *.pdf *.md
 	git remote rm origin
 	git config credential.helper store
 	git config --global credential.helper 'cache --timeout 3600'
-	git remote add origin https://github.com/mvanbraeckel/semaphores_3110.git
+	git remote add origin https://github.com/mvanbraeckel/Semaphores_3110.git
 	git push -u origin master
 
 clean:
