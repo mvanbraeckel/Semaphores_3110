@@ -11,6 +11,7 @@
 #include <semaphore.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 // ========================== GLOBAL VARIABLES ==========================
 int NITER = 1000000;
@@ -27,26 +28,31 @@ void* thread();
 int main(int argc, char * argv[]) {
 	// declare variables
 	pthread_t tid1, tid2;
-
 	sem_init(&mutex, 0, 1); // initialize the semaphor
+	char *ptr1; // to check that arg is just a number
 
-	// validate arguments
-	// implementation
+	// check that proper #of arguments were inputted
+    if(argc != 2) {
+        fprintf(stderr, "Usage: %s <non-zero integer NumTimesEachThreadIncrementsCounter>\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
 
+	// convert arg to integer
+    NITER = strtod(argv[1], &ptr1);
 
-	// Parsing the arguments passed to your C program
-	// Including the number of times that each thread increments
-	// the shared count cnt
-	// For example, NITER = 20000;
+    // check that it's a valid integer
+    if(strcmp(ptr1, "") != 0 || NITER < 0) {
+        fprintf(stderr, "Invalid Input: arguments must be valid non-zero integers\n");
+        fprintf(stderr, "Usage: %s <non-zero integer NumTimesEachThreadIncrementsCounter>\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
 
-
-	// Display the number of times (entered by the user) that each thread
-	// increments the shared count cnt
+	// Display the number of times (entered by the user) that each thread increments the shared count cnt
 // PLEASE DO NOT remove or modify the following code 
 	printf("2*NITER is [%d]\n", 2*NITER);
 // End of code section 
 
-	// create both threads
+	// create both threads (error check)
 	if(pthread_create(&tid1, NULL, thread, NULL)) {
 		printf("\n ERROR creating thread 1");
 		exit(EXIT_FAILURE);
